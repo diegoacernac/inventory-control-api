@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public class HomeOptionController {
     private final HomeOptionService homeOptionService;
 
-    @GetMapping("")
+    @GetMapping("/listar")
     public ResponseEntity<?> getAll() {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(homeOptionService.findAll());
@@ -56,7 +56,7 @@ public class HomeOptionController {
         }
     }
 
-    @PostMapping("")
+    @PostMapping("/save")
     public ResponseEntity<?> save(@RequestBody HomeOption homeOption) {
         try {
             return ResponseEntity.status(HttpStatus.CREATED).body(homeOptionService.save(homeOption));
@@ -65,7 +65,7 @@ public class HomeOptionController {
         }
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/id}")
     public ResponseEntity<?> update(@PathVariable Long id, @RequestBody HomeOption homeOption) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(homeOptionService.update(id, homeOption));
@@ -74,7 +74,7 @@ public class HomeOptionController {
         }
     }
 
-    @PutMapping ("delete/{id}")
+    @PutMapping ("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
         try {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body(homeOptionService.delete(id));
