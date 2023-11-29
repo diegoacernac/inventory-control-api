@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public class ProductController {
     private final ProductService productService;
 
-    @GetMapping("")
+    @GetMapping("/listar")
     public ResponseEntity<?> getAll() {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(productService.findAll());
@@ -47,7 +47,7 @@ public class ProductController {
         }
     }
 
-    @PostMapping("")
+    @PostMapping("/save")
     public ResponseEntity<?> save(@RequestBody Product product) {
         try {
             return ResponseEntity.status(HttpStatus.CREATED).body(productService.save(product));
@@ -56,7 +56,7 @@ public class ProductController {
         }
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Product product) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(productService.update(id, product));
