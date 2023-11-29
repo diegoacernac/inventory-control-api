@@ -6,6 +6,8 @@ import com.cibertec.inventorycontrolapi.services.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -34,10 +36,29 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order save(Order order) throws Exception {
         try {
+            order.setOrderCode(generateOrderCode());
             return orderRepository.save(order);
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
+    }
+
+    private String generateOrderCode() {
+        LocalDate currentDate = LocalDate.now();
+        String formattedDate = currentDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+        // Obtener el último número secuencial y agregar 1
+        String lastOrderCode = orderRepository.findLastOrderCode("OR");
+        int sequenceNumber = 1;
+        if (lastOrderCode != null) {
+            String lastSequence = lastOrderCode.substring(lastOrderCode.lastIndexOf('-') + 1);
+            sequenceNumber = Integer.parseInt(lastSequence) + 1;
+        }
+
+        // Formatear el número secuencial a tres dígitos
+        String formattedSequence = String.format("%03d", sequenceNumber);
+
+        return "OR" + formattedDate + "-" + formattedSequence;
     }
 
     @Override

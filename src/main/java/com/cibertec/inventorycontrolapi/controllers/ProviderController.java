@@ -68,7 +68,7 @@ public class ProviderController {
     @PutMapping ("delete/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
         try {
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(providerService.delete(id));
+            return ResponseEntity.status(HttpStatus.OK).body(providerService.delete(id));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }

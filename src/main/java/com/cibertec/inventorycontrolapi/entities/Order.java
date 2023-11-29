@@ -20,6 +20,9 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "orderCode", unique = true, nullable = false)
+    private String orderCode;
+
     @Column(name = "user", length = 50, nullable = false)
     private String user;
 

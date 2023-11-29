@@ -65,10 +65,10 @@ public class CategoryController {
         }
     }
 
-    @PutMapping ("delete/{id}")
+    @PutMapping ("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
         try {
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(categoryService.delete(id));
+            return ResponseEntity.status(HttpStatus.OK).body(categoryService.delete(id));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
