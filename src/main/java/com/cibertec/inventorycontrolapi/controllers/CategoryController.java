@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public class CategoryController {
     private final CategoryService categoryService;
 
-    @GetMapping("")
+    @GetMapping("/listar")
     public ResponseEntity<?> getAll() {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(categoryService.findAll());
@@ -47,7 +47,7 @@ public class CategoryController {
         }
     }
 
-    @PostMapping("")
+    @PostMapping("/save")
     public ResponseEntity<?> save(@RequestBody Category category) {
         try {
             return ResponseEntity.status(HttpStatus.CREATED).body(categoryService.save(category));
@@ -56,7 +56,7 @@ public class CategoryController {
         }
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Category category) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(categoryService.update(id, category));
