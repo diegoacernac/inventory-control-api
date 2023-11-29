@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public class OrderController {
     private final OrderService orderService;
 
-    @GetMapping("")
+    @GetMapping("/listar")
     public ResponseEntity<?> getAll() {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(orderService.findAll());
@@ -38,7 +38,7 @@ public class OrderController {
         }
     }
 
-    @PostMapping("")
+    @PostMapping("/save")
     public ResponseEntity<?> save(@RequestBody Order order) {
         try {
             return ResponseEntity.status(HttpStatus.CREATED).body(orderService.save(order));
@@ -47,7 +47,7 @@ public class OrderController {
         }
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Order order) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(orderService.update(id, order));
