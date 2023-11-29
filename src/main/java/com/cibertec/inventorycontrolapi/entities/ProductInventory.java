@@ -21,15 +21,15 @@ public class ProductInventory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "productId", nullable = false, unique = false)
+    @ManyToOne
+    @JoinColumn(name = "productInventoryId", nullable = false)
     private Product product;
 
     @Column(name = "stock", nullable = false)
     private int stock;
 
     @Column(name = "measuringUnit", nullable = false)
-    private int measuringUnit;
+    private String measuringUnit;
 
     @Column(name = "batch", length = 20, nullable = false)
     private String batch;

@@ -26,7 +26,7 @@ public class OrderDetail {
     private int quantity;
 
     @Column(name = "measuringUnit", nullable = false)
-    private int measuringUnit;
+    private String measuringUnit;
 
     @Column(name = "isComplete", nullable = false)
     private Boolean isComplete;
