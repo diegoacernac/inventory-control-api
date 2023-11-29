@@ -25,6 +25,12 @@ public class OrderDetail {
     @Column(name = "quantity", nullable = false)
     private int quantity;
 
+    @Column(name = "measuringUnit", nullable = false)
+    private int measuringUnit;
+
+    @Column(name = "isComplete", nullable = false)
+    private Boolean isComplete;
+
     @ManyToOne
     @JoinColumn(name = "orderId", nullable = false)
     private Order order;

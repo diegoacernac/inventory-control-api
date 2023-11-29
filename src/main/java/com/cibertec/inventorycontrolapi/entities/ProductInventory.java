@@ -22,13 +22,16 @@ public class ProductInventory {
     private Long id;
 
     @OneToOne
-    @JoinColumn(name = "productId", nullable = false)
+    @JoinColumn(name = "productId", nullable = false, unique = false)
     private Product product;
 
     @Column(name = "stock", nullable = false)
     private int stock;
 
-    @Column(name = "batch", length = 10, nullable = false)
+    @Column(name = "measuringUnit", nullable = false)
+    private int measuringUnit;
+
+    @Column(name = "batch", length = 20, nullable = false)
     private String batch;
 
     @Column(name = "purchasePrice", nullable = false)
